@@ -1,0 +1,106 @@
+<script>
+
+let humanScore = 0;
+let computerScore = 0;
+let roundNumber = 0;
+
+function getComputerChoice(){
+    let result = (Math.floor(Math.random() * 10)) % 3;
+    if (result == 0) {
+        return "scissors"
+    }
+    else if (result == 1){
+        return "rock"
+    }
+    else {
+        return "paper"
+    }
+}
+
+function getHumanChoice() {
+    let choice = prompt("Choose 1 for rock, 2 for paper or 3 for scissors")
+    if (choice === "1") {
+        return "rock";
+    }
+    else if (choice === "2") {
+        return "paper";
+    }
+    else if (choice === "3") {
+        return "scissors";
+    }
+    else if (choice === null) {
+        return;
+    }
+    else {
+        confirm("Only choice is 1, 2 or 3");
+        getHumanChoice();
+    }
+}
+
+
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        return "draw"
+        
+    }
+    else if (humanChoice === "paper") {
+        if (computerChoice === "rock") {
+            ++humanScore;
+            return "win for human"
+        }
+        else {
+            ++computerScore;
+            return "win for computer"
+        }
+    }
+    else if (humanChoice === "rock") {
+        if (computerChoice === "scissors") {
+            ++humanScore;
+            return "win for human"
+        } 
+        else {
+            ++computerScore;
+            return "win for computer"
+        }
+    }
+    else {
+        if (computerChoice === "paper") {
+            ++humanScore;
+            return "win for human"
+        } 
+        else {
+            ++computerScore;
+            return "win for computer"
+
+        }
+    }
+
+}
+
+
+function playGame() {
+    for (roundNumber; roundNumber < 5; roundNumber++) {
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();  
+        let result = playRound(humanSelection, computerSelection);   
+        alert("This rounds result: "+ result + "\nScore \nHUMAN: " + humanScore + "\nCOMPUTER: " + computerScore);
+    }
+    playAgain();
+}
+
+function playAgain() {
+    if (confirm("Want to play again?") == true) {
+        humanScore = 0;
+        computerScore = 0;
+        roundNumber = 0;
+        playGame();
+    }
+    else {
+        return;
+    }
+}
+
+playGame();
+
+
+</script>
