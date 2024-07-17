@@ -3,6 +3,7 @@
 let humanScore = 0;
 let computerScore = 0;
 let roundNumber = 0;
+let continueGame = true;
 
 function getComputerChoice(){
     let result = (Math.floor(Math.random() * 10)) % 3;
@@ -29,7 +30,7 @@ function getHumanChoice() {
         return "scissors";
     }
     else if (choice === null) {
-        return;
+        return null;
     }
     else {
         confirm("Only choice is 1, 2 or 3");
@@ -77,30 +78,51 @@ function playRound(humanChoice, computerChoice) {
 
 }
 
-
 function playGame() {
-    for (roundNumber; roundNumber < 5; roundNumber++) {
+    while (roundNumber < 5 && continueGame == true) {
         let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();  
-        let result = playRound(humanSelection, computerSelection);   
-        alert("This rounds result: "+ result + "\nScore \nHUMAN: " + humanScore + "\nCOMPUTER: " + computerScore);
+        let computerSelection = getComputerChoice();
+        console.log(humanSelection);
+
+        function stopGame(humanSelection) {
+            if (humanSelection === null) {
+                let choice = confirm("Do you want to start over?");
+                (choice === true) ? playGame() : continueGame = false;
+                console.log(choice);
+            }
+        } 
+        stopGame(humanSelection);
+        if (continueGame) {
+            let result = playRound(humanSelection, computerSelection);   
+            alert("This rounds result: "+ result + "\nScore \nHUMAN: " + humanScore + "\nCOMPUTER: " + computerScore);
+            ++roundNumber;
+        }
     }
     playAgain();
 }
 
 function playAgain() {
-    if (confirm("Want to play again?") == true) {
+    let gameWinner = null;
+    if (humanScore > computerScore) {
+        gameWinner = "human won";
+    }
+    else if (computerScore > humanScore) {
+        gameWinner = "computer won";
+    }
+    else {
+        gameWinner = "draw"
+    }
+    if (confirm("Games result: " + gameWinner + "\nWant to play again?") == true) {
         humanScore = 0;
         computerScore = 0;
         roundNumber = 0;
         playGame();
     }
     else {
-        return;
+       close();
     }
 }
 
 playGame();
-
 
 </script>
