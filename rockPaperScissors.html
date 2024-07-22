@@ -1,4 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="buttons"> 
+        <button id="rock"> Rock </button>
+        <button id="paper"> Paper </button>
+        <button id="scissors"> Scissors </button>
+    </div>
+    <div id="roundResults"></div>
+</body>
+
+
 <script>
+
+    const buttons = document.querySelectorAll("button");
+    const round = document.querySelector("#roundResults");
+
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            console.log(button.id);
+            console.log(getComputerChoice());
+            console.log(playRound(button.id, getComputerChoice()));
+            
+            const roundResult = document.createElement("div");
+            roundResult.textContent = playRound(button.id, getComputerChoice());
+            round.appendChild(roundResult);
+        });
+    });
 
 let humanScore = 0;
 let computerScore = 0;
@@ -78,6 +111,7 @@ function playRound(humanChoice, computerChoice) {
 
 }
 
+/*
 function playGame() {
     while (roundNumber < 5 && continueGame == true) {
         let humanSelection = getHumanChoice();
@@ -100,6 +134,7 @@ function playGame() {
     }
     playAgain();
 }
+    */
 
 function playAgain() {
     let gameWinner = null;
@@ -126,3 +161,4 @@ function playAgain() {
 playGame();
 
 </script>
+</html>
