@@ -1,0 +1,39 @@
+/* Some default styling for cookbook examples */
+/*
+rgb(53,43,34)
+rgb(75,70,74)
+rgb(95,97,110)
+rgb(137,151,188)
+rgb(160,178,226)
+*/
+body {
+    background-color: #d8d3c4;
+    color: #333;
+    font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+    padding: 20px 100px;
+    margin: 0;
+}
+
+div {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.header {
+  justify-content: space-around;
+}
+
+#currentScore {
+  font-size: 40px;
+  margin: 0px;
+
+}
+
+#buttons {
+  gap: 10px;
+}
+
+#roundResults {
+  flex-direction: column;
+  margin-top: 10px;
+}
